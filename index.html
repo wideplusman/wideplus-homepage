@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>와이드플러스 주식회사</title>
-<meta name="description" content="와이드플러스 주식회사 — 함께 창의력을 나누고 함께 성장합니다. 첫 프로젝트 국토탐사맵: 투명한 부동산 정보와 제대로 된 분석으로 국토를 더 효율적으로.">
+<meta name="description" content="와이드플러스 주식회사 — 창의를 나누고, 함께 성장합니다. 함께 만들고 함께 나누는 회사, 첫 프로젝트는 부동산 정보를 여는 지도 국토탐사맵.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,8 +97,8 @@
   .shots img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 10px; }
   .shots figcaption { font-size: 14px; color: var(--muted); }
 
-  .name { font-size: 22px; font-weight: 700; margin: 0; }
-  .name span { font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--accent); margin-left: 6px; }
+  .name { font-size: clamp(24px, 3.6vw, 31px); font-weight: 700; margin: 0; }
+  .name span { font-family: var(--f-hand); font-weight: 400; font-size: clamp(26px, 3.8vw, 34px); color: var(--accent); margin-left: 6px; }
   .pill { justify-self: start; font-family: var(--f-mono); font-size: 12px; padding: 2px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
 
   .en p { font-size: 15px; color: var(--muted); }
@@ -122,32 +122,41 @@
     <div class="wrap">
       <img class="logo" src="logo-white.png" alt="WIDEPLUS — 물결 눈썹과 십자 눈의 웃는 얼굴 로고" width="720" height="519">
       <p class="slogan">SHARING CREATIVITY<br>GROWING TOGETHER</p>
-      <p class="slogan-ko">함께 창의력을 나누고, 함께 성장합니다</p>
+      <p class="slogan-ko">창의를 나누고, 함께 성장합니다</p>
     </div>
   </header>
 
   <main class="gutter">
     <div class="wrap">
       <section>
-        <p class="label">Philosophy</p>
-        <h2>다양한 사람들이 자유롭게 함께 만들고,<br>성과를 함께 나누는 세상</h2>
-        <p class="lead">와이드플러스는 더 많은 사람이 혜택을 누리는 세상을 꿈꿉니다. 부동산에서 출발했지만 부동산에만 머물지 않습니다. 함께 만들고 함께 나누는 방식 — DAO 같은 열린 협업 구조를 포함해 — 으로 다양한 프로젝트를 이어 갑니다.</p>
+        <p class="label">About</p>
+        <h2>함께 만들고, 함께 나누는 회사</h2>
+        <p class="lead">와이드플러스는 서로 다른 사람들이 자유롭게 모여 함께 만들고, 그 성과를 함께 나누는 회사입니다. 우리가 만든 것이 더 많은 사람에게 닿는 것, 그것이 우리가 일하는 이유입니다.</p>
+        <p class="muted">첫 무대는 부동산입니다. 개발 현장에서 쌓은 실무의 눈과 데이터 기술을 함께 씁니다. 앞으로는 DAO처럼 누구나 참여하고 성과를 나누는 방식의 프로젝트로 넓혀 갑니다.</p>
       </section>
 
       <section>
-        <p class="label">First project</p>
-        <h2>국토탐사맵 — 부동산 정보를<br>더 투명하게, 더 제대로</h2>
-        <p>한국의 부동산 정보는 아직 심하게 한쪽으로 치우쳐 있고, 부동산 서비스는 시장의 크기만큼 앞서 있지 못합니다. 국토탐사맵은 열린 마음으로 정보를 투명하게 나누고, 제대로 된 분석과 컨설팅으로 좁은 대한민국의 국토와 부동산을 더 효율적으로 쓰게 만들려고 합니다.</p>
+        <p class="label">Why</p>
+        <h2>부동산 정보는 아직<br>고르게 나뉘어 있지 않습니다</h2>
+        <p>같은 땅을 두고도 누군가는 많이 알고, 누군가는 거의 모릅니다. 자료는 여러 곳에 흩어져 있고, 서비스는 시장의 크기를 따라가지 못합니다.</p>
+        <p>우리는 정보를 투명하게 열고, 제대로 된 분석과 컨설팅으로 좁은 국토를 더 효율적으로 쓰는 길을 찾습니다.</p>
+      </section>
+
+      <section>
+        <p class="label">Now building</p>
+        <p class="name">국토탐사맵<span>by wideplus</span></p>
+        <p class="lead">부동산은 직접 보고 겪어야 압니다. 국토탐사맵은 그 경험을 데이터와 기술로 지도 위에 옮깁니다.</p>
         <div class="why">
-          <div><span class="tag">MAP</span><h3>왜 지도인가</h3><p>부동산은 눈으로 보고 직접 경험하는 것이 중요합니다. 그 경험을 데이터와 기술로 최대한 가깝게 옮기려고 지도 위에 만듭니다.</p></div>
-          <div><span class="tag">OPEN</span><h3>정보는 열고, 답은 깊게</h3><p>공공 자료를 모아 누구나 지도에서 보게 하고, 빌라 신축 사업성·재개발 분석처럼 실무 질문에는 근거 있는 답을 드립니다.</p></div>
-          <div><span class="tag">TOGETHER</span><h3>업계가 함께 쓰는 도구</h3><p>중개·개발·컨설팅 등 부동산 업계 사람들이 자유롭게 쓰며 더 앞선 서비스를 제공하도록 — 거래(삽니다·교환)와 업무 도구도 같은 흐름으로 준비합니다.</p></div>
+          <div><span class="tag">SEE</span><h3>흩어진 공공 자료를 한 지도에</h3><p>실거래·전월세·인허가·정비구역·상권·도시계획·노후도를 겹쳐 보며 땅과 동네를 읽습니다.</p></div>
+          <div><span class="tag">ANSWER</span><h3>지번 하나로 사업성까지</h3><p>빌라를 법규상 얼마나 지을 수 있는지, 그 사업이 되는지, 재개발이 어디쯤 와 있는지 근거와 함께 답합니다.</p></div>
+          <div><span class="tag">TOGETHER</span><h3>업계가 함께 쓰는 열린 도구</h3><p>중개·개발·컨설팅 업체가 이 위에서 더 나은 서비스를 만들도록 엽니다. 삽니다·교환 같은 거래 기능도 같은 생각으로 준비합니다.</p></div>
         </div>
+        <span class="pill">베타 준비 중</span>
       </section>
 
       <section>
         <p class="label">Technology</p>
-        <h2>보이지 않는 곳은 촘촘하게,<br>보이는 곳은 지번 하나로</h2>
+        <h2>안은 촘촘하게, 겉은 간결하게</h2>
         <div class="stats">
           <div><b>245,662</b><span>서울 실거래(최근 2년)</span></div>
           <div><b>254,948</b><span>서울 전월세(최근 2년)</span></div>
@@ -155,11 +164,10 @@
         </div>
         <p class="stats-note">2026-09 기준 · 개발 중 화면의 숫자</p>
         <ul class="tech">
-          <li><span>인허가·실거래·전월세·상권·정비구역·도시계획·노후도 자료를 공식 경로로 모아 한 지도에서 겹쳐 봅니다.</span></li>
-          <li><span>정비구역마다 단계·고시 이력·조합 정보를 카드 한 장으로 정리합니다.</span></li>
-          <li><span>건축 법규를 바탕으로 빌라를 얼마나 지을 수 있는지 자동으로 검토하는 규모검토 엔진을 만들고 있습니다.</span></li>
-          <li><span>숫자와 규칙은 모델의 답을 그대로 믿지 않고 법령 원문과 공공 자료에 견주어 확인합니다.</span></li>
-          <li><span>개발자가 아닌 부동산 실무자가 Claude Code와 AI 에이전트 팀을 이끌며 직접 만듭니다.</span></li>
+          <li><span>공공 자료를 공식 경로로 자동 수집해 레이어마다 정리합니다.</span></li>
+          <li><span>건축 법규를 옮겨 담은 규모검토 엔진으로 빌라의 크기와 수지를 계산하는 기능을 만들고 있습니다.</span></li>
+          <li><span>숫자와 규칙은 법령 원문과 공공 자료에 다시 견주어 확인합니다.</span></li>
+          <li><span>부동산 실무자가 Claude Code와 AI 에이전트 팀을 이끌며 직접 개발합니다.</span></li>
         </ul>
         <div class="shots">
           <figure>
@@ -172,15 +180,13 @@
           </figure>
         </div>
         <p class="stats-note">개발 중 화면(2026-10) · 지도 © Kakao · 실거래 국토교통부 · 정비구역 서울시</p>
-        <p class="name">국토탐사맵<span>by wideplus</span></p>
-        <span class="pill">베타 준비 중</span>
       </section>
 
       <section>
-        <p class="label">What we do</p>
-        <h2>하는 일</h2>
+        <p class="label">Services</p>
+        <h2>지금 하는 일</h2>
         <div class="cols">
-          <div><h3>부동산 개발 컨설팅</h3><p>이 땅에서 무엇을, 얼마나 지을 수 있는지 — 개발 사업의 첫 판단을 함께 검토합니다.</p></div>
+          <div><h3>부동산 개발 컨설팅</h3><p>이 땅에서 무엇을, 얼마나 지을 수 있는지 개발 사업의 첫 판단을 함께 검토합니다.</p></div>
           <div><h3>빌라 신축·개발</h3><p>법규 검토와 규모 검토로 지을 수 있는 크기를 잡고, 수지분석으로 사업이 되는지 숫자로 답합니다.</p></div>
           <div><h3>정비사업 분석</h3><p>재개발·재건축 구역의 진행 단계와 사업성을 자료로 살펴봅니다.</p></div>
         </div>
@@ -188,11 +194,13 @@
 
       <section class="en" lang="en">
         <p class="label">In English</p>
-        <p>Wideplus, founded in 2022 in Korea, works under one idea: share creativity, grow together — people building freely together, sharing the results, so that more people benefit. We started in real estate but are not limited to it, and plan open, collaborative projects such as a DAO. Our first project, Gukto Tamsa Map (국토탐사맵), tackles the information gap in Korean real estate: it brings parcels, transactions, permits and redevelopment zones onto one map, answers practical questions such as whether a small residential (villa) project is feasible, and is meant as an open tool that brokers, developers and consultants can build better services on. It is built with Claude Code by a non-developer founder leading a team of AI agents. Currently preparing for beta.</p>
+        <p>Wideplus is a Korean company, founded in 2022, built on one idea: share creativity, grow together. People with different skills build freely together, share what they achieve, and let more people benefit. We start with real estate, where information is still unevenly shared, and plan to grow into open, participatory projects such as a DAO.</p>
+        <p>Our first product, Gukto Tamsa Map (국토탐사맵), brings parcels, transactions, permits and redevelopment zones onto one map, answers practical questions such as whether a small residential project is feasible, and opens tools that brokers, developers and consultants can build better services on. It is built with Claude Code by a real-estate professional leading a team of AI agents. Preparing for beta.</p>
       </section>
 
       <section>
         <p class="label">Contact</p>
+        <p class="muted">함께 만들고 싶은 일이 있다면 언제든 연락 주세요.</p>
         <a class="mail" href="mailto:contact@wideplus.co.kr">contact@wideplus.co.kr</a>
       </section>
 
