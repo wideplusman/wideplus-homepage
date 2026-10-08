@@ -4,113 +4,105 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>와이드플러스 주식회사</title>
-<meta name="description" content="와이드플러스 주식회사 — 부동산 개발 컨설팅, 빌라 신축·개발, 정비사업 분석, 그리고 국토탐사맵.">
+<meta name="description" content="와이드플러스 주식회사 — 함께 창의력을 나누고 함께 성장합니다. 첫 프로젝트 국토탐사맵: 투명한 부동산 정보와 제대로 된 분석으로 국토를 더 효율적으로.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Jost:wght@300;400&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@300;400&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
-  /* 레이아웃: 명함 앞면(파란 천 + 흰 자수 로고)을 첫 화면으로, 아래는 명함 뒷면 같은 종이 위에 회사 이야기 */
+  /* 레이아웃: 명함 앞면(파란 천 + 흰 손글씨 로고) 위에 지도 좌표 격자를 옅게 — 아래는 종이 위 회사 이야기, 이름표·숫자는 고정폭 글씨 */
   :root {
-    --cobalt: #1D4ED0;        /* 명함 파랑 */
-    --cobalt-deep: #173FA8;
+    --cobalt: #1D4ED0;
     --on-cobalt: #FFFFFF;
-    --paper: #F2F1EC;         /* 명함 뒷면 종이 */
+    --paper: #F2F1EC;
     --sheet: #FBFAF7;
     --ink: #1C1B22;
     --muted: #5F5E6B;
     --rule: #DCDAD2;
     --accent: #1D4ED0;
     --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
     --f-wide: "Jost", "Futura", "Century Gothic", sans-serif;
     --f-hand: "Nanum Pen Script", "IBM Plex Sans KR", cursive;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --cobalt: #1D4ED0; --cobalt-deep: #173FA8; --on-cobalt: #FFFFFF;
+      --cobalt: #1D4ED0; --on-cobalt: #FFFFFF;
       --paper: #15161C; --sheet: #1D1F27; --ink: #ECEBF2; --muted: #A4A3B2; --rule: #30323C; --accent: #8FAAF5;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --cobalt: #1D4ED0; --cobalt-deep: #173FA8; --on-cobalt: #FFFFFF;
+    --cobalt: #1D4ED0; --on-cobalt: #FFFFFF;
     --paper: #15161C; --sheet: #1D1F27; --ink: #ECEBF2; --muted: #A4A3B2; --rule: #30323C; --accent: #8FAAF5;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--f-body);
-    font-size: 16px;
-    line-height: 1.75;
-    word-break: keep-all;
-  }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.75; word-break: keep-all; }
   .gutter { padding-inline: max(16px, 4vw); }
-  .wrap { max-width: 920px; margin-inline: auto; }
+  .wrap { max-width: 960px; margin-inline: auto; }
 
-  /* 첫 화면 — 명함 앞면 */
-  .front {
-    position: relative;
-    background-color: var(--cobalt);
-    color: var(--on-cobalt);
-    padding-block: 56px 48px;
-    overflow: hidden;
+  /* 첫 화면 */
+  .front { position: relative; background-color: var(--cobalt); color: var(--on-cobalt); padding-block: 60px 52px; overflow: hidden; }
+  .front::before {   /* 지도 좌표 격자 */
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse at center, #000 30%, transparent 78%);
   }
-  .front::before {   /* 천 결 — 아주 옅게 */
-    content: "";
-    position: absolute; inset: 0;
+  .front::after {    /* 천 결 */
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.16;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.18;
-    pointer-events: none;
   }
-  .front .wrap { position: relative; display: grid; justify-items: center; gap: 28px; text-align: center; }
+  .front .wrap { position: relative; z-index: 1; display: grid; justify-items: center; gap: 24px; text-align: center; }
+  .coord { position: absolute; z-index: 1; top: 14px; right: max(16px, 4vw); font-family: var(--f-mono); font-size: 11.5px; letter-spacing: 0.06em; opacity: 0.7; }
   .logo { width: min(340px, 72vw); height: auto; display: block; filter: drop-shadow(0 2px 0 rgba(0,0,0,0.18)); }
-  .slogan {
-    font-family: var(--f-wide); font-weight: 300;
-    font-size: clamp(14px, 2.4vw, 19px);
-    letter-spacing: 0.32em; line-height: 1.9;
-    margin: 0; padding-left: 0.32em;
-  }
-  .lede { margin: 0; font-size: 17px; opacity: 0.92; max-width: 36em; text-wrap: balance; }
+  .slogan { font-family: var(--f-wide); font-weight: 300; font-size: clamp(14px, 2.4vw, 19px); letter-spacing: 0.32em; line-height: 1.9; margin: 0; padding-left: 0.32em; }
+  .slogan-ko { margin: 0; font-size: clamp(17px, 2.6vw, 21px); font-weight: 500; text-wrap: balance; }
 
-  /* 본문 — 명함 뒷면 */
-  main { padding-block: 24px 8px; }
-  section { padding-block: 44px; border-top: 1px solid var(--rule); display: grid; gap: 18px; }
+  /* 본문 */
+  main { padding-block: 16px 8px; }
+  section { padding-block: 48px; border-top: 1px solid var(--rule); display: grid; gap: 18px; }
   section:first-child { border-top: 0; }
-  .label {
-    font-family: var(--f-wide); font-size: 13px; font-weight: 400;
-    letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin: 0;
-  }
-  h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.4; margin: 0; font-weight: 700; text-wrap: balance; }
-  p { margin: 0; max-width: 40em; }
+  .label { font-family: var(--f-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0; display: flex; align-items: center; gap: 8px; }
+  .label::before { content: ""; width: 8px; height: 8px; background: var(--accent); display: inline-block; }
+  h2 { font-size: clamp(23px, 3.6vw, 31px); line-height: 1.4; margin: 0; font-weight: 700; text-wrap: balance; letter-spacing: -0.01em; }
+  h3 { font-size: 17px; margin: 0 0 6px; }
+  p { margin: 0; max-width: 42em; }
+  .lead { font-size: clamp(17px, 2.4vw, 20px); line-height: 1.7; }
   .muted { color: var(--muted); }
 
-  .vision {
-    font-size: clamp(19px, 3vw, 24px); line-height: 1.6; font-weight: 500;
-    border-left: 3px solid var(--accent); padding-left: 18px; max-width: 34em;
-  }
-  .vision small { display: block; margin-top: 8px; font-size: 14px; font-weight: 400; color: var(--muted); }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+  .cols > div { padding: 18px 20px 20px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+  .cols p { font-size: 15px; color: var(--muted); }
+  .tag { font-family: var(--f-mono); font-size: 11.5px; color: var(--accent); letter-spacing: 0.06em; }
 
-  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
-  .work div { padding: 18px 18px 20px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
-  .work h3 { font-size: 17px; margin: 0 0 6px; }
-  .work p { font-size: 15px; color: var(--muted); }
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .why > div { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 20px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+  .why p { font-size: 15px; color: var(--muted); }
 
-  .product { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 24px; display: grid; gap: 10px; }
-  .product .name { font-size: 22px; font-weight: 700; margin: 0; }
-  .product .name span { font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--accent); margin-left: 6px; }
-  .pill { justify-self: start; font-size: 13px; padding: 2px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0; border-block: 1px solid var(--rule); }
+  .stats > div { padding: 16px 16px 14px 0; display: grid; gap: 2px; min-width: 0; }
+  .stats b { font-family: var(--f-mono); font-weight: 500; font-size: clamp(22px, 3.4vw, 28px); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .stats span { font-size: 13.5px; color: var(--muted); }
+  .stats-note { font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); }
+
+  .tech { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .tech li { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 10px; font-size: 15.5px; }
+  .tech li::before { content: ""; width: 6px; height: 6px; margin-top: 11px; border: 1.5px solid var(--accent); }
 
   .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
   .shots figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
   .shots img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 10px; }
   .shots figcaption { font-size: 14px; color: var(--muted); }
-  .shots-note { font-size: 12.5px; color: var(--muted); }
+
+  .name { font-size: 22px; font-weight: 700; margin: 0; }
+  .name span { font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--accent); margin-left: 6px; }
+  .pill { justify-self: start; font-family: var(--f-mono); font-size: 12px; padding: 2px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
+
   .en p { font-size: 15px; color: var(--muted); }
-  .mail { font-size: clamp(20px, 3vw, 24px); font-weight: 700; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent); justify-self: start; user-select: all; }
+  .mail { font-family: var(--f-mono); font-size: clamp(18px, 2.8vw, 22px); font-weight: 500; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent); justify-self: start; user-select: all; }
   .mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
   footer { border-top: 1px solid var(--rule); padding-block: 28px 44px; font-size: 13px; color: var(--muted); display: grid; gap: 4px; }
@@ -118,51 +110,57 @@
   footer .hand { font-family: var(--f-hand); font-size: 22px; color: var(--accent); }
 
   @media (max-width: 480px) {
-    .front { padding-block: 40px 36px; }
-    .lede { font-size: 15px; }
-    section { padding-block: 34px; }
+    .front { padding-block: 48px 40px; }
+    .coord { display: none; }
+    section { padding-block: 36px; }
   }
 </style>
 </head>
 <body>
   <header class="front gutter">
+    <span class="coord" aria-hidden="true">37.5665° N · 126.9780° E</span>
     <div class="wrap">
       <img class="logo" src="logo-white.png" alt="WIDEPLUS — 물결 눈썹과 십자 눈의 웃는 얼굴 로고" width="720" height="519">
       <p class="slogan">SHARING CREATIVITY<br>GROWING TOGETHER</p>
-      <p class="lede">부동산 개발 실무와 데이터로, 땅 한 필지의 가능성을 함께 읽고 키우는 회사입니다.</p>
+      <p class="slogan-ko">함께 창의력을 나누고, 함께 성장합니다</p>
     </div>
   </header>
 
   <main class="gutter">
     <div class="wrap">
       <section>
-        <p class="label">About</p>
-        <h2>와이드플러스 주식회사</h2>
-        <p>와이드플러스는 부동산 개발 컨설팅과 빌라 신축·개발, 정비사업 사업성 검토를 하는 회사입니다. 현장에서 쌓은 실무 경험에 공공 데이터를 더해, 땅 한 필지가 어떤 사업이 될 수 있는지 근거를 갖고 답합니다.</p>
+        <p class="label">Philosophy</p>
+        <h2>다양한 사람들이 자유롭게 함께 만들고,<br>성과를 함께 나누는 세상</h2>
+        <p class="lead">와이드플러스는 더 많은 사람이 혜택을 누리는 세상을 꿈꿉니다. 부동산에서 출발했지만 부동산에만 머물지 않습니다. 함께 만들고 함께 나누는 방식 — DAO 같은 열린 협업 구조를 포함해 — 으로 다양한 프로젝트를 이어 갑니다.</p>
       </section>
 
       <section>
-        <p class="label">Vision</p>
-        <p class="vision">부동산 데이터와 정보의 메카 — 가볍게 모으고, 누구나 가공해 쓰고, 우리는 창의적으로 활용합니다.<small>모은 자료는 컨설팅과 플랫폼 서비스로 이어지고, 함께 계속 키워 갑니다.</small></p>
-      </section>
-
-      <section>
-        <p class="label">What we do</p>
-        <h2>하는 일</h2>
-        <div class="work">
-          <div><h3>부동산 개발 컨설팅</h3><p>이 땅에서 무엇을, 얼마나 지을 수 있는지 — 개발 사업의 첫 판단을 함께 검토합니다.</p></div>
-          <div><h3>빌라 신축·개발</h3><p>법규 검토와 규모 검토로 지을 수 있는 크기를 잡고, 수지분석으로 사업이 되는지 숫자로 답합니다.</p></div>
-          <div><h3>정비사업 분석</h3><p>재개발·재건축 구역의 진행 단계와 사업성을 자료로 살펴봅니다.</p></div>
+        <p class="label">First project</p>
+        <h2>국토탐사맵 — 부동산 정보를<br>더 투명하게, 더 제대로</h2>
+        <p>한국의 부동산 정보는 아직 심하게 한쪽으로 치우쳐 있고, 부동산 서비스는 시장의 크기만큼 앞서 있지 못합니다. 국토탐사맵은 열린 마음으로 정보를 투명하게 나누고, 제대로 된 분석과 컨설팅으로 좁은 대한민국의 국토와 부동산을 더 효율적으로 쓰게 만들려고 합니다.</p>
+        <div class="why">
+          <div><span class="tag">MAP</span><h3>왜 지도인가</h3><p>부동산은 눈으로 보고 직접 경험하는 것이 중요합니다. 그 경험을 데이터와 기술로 최대한 가깝게 옮기려고 지도 위에 만듭니다.</p></div>
+          <div><span class="tag">OPEN</span><h3>정보는 열고, 답은 깊게</h3><p>공공 자료를 모아 누구나 지도에서 보게 하고, 빌라 신축 사업성·재개발 분석처럼 실무 질문에는 근거 있는 답을 드립니다.</p></div>
+          <div><span class="tag">TOGETHER</span><h3>업계가 함께 쓰는 도구</h3><p>중개·개발·컨설팅 등 부동산 업계 사람들이 자유롭게 쓰며 더 앞선 서비스를 제공하도록 — 거래(삽니다·교환)와 업무 도구도 같은 흐름으로 준비합니다.</p></div>
         </div>
       </section>
 
       <section>
-        <p class="label">Now building</p>
-        <div class="product">
-          <p class="name">국토탐사맵<span>by wideplus</span></p>
-          <p>필지·실거래·인허가·정비구역 자료를 한 지도에 모으고, 지번 하나를 넣으면 빌라 신축 사업성과 재개발 분석의 답을 주는 서비스입니다. AI(Claude)와 함께 만들고 있습니다.</p>
-          <span class="pill">베타 준비 중</span>
+        <p class="label">Technology</p>
+        <h2>보이지 않는 곳은 촘촘하게,<br>보이는 곳은 지번 하나로</h2>
+        <div class="stats">
+          <div><b>245,662</b><span>서울 실거래(최근 2년)</span></div>
+          <div><b>254,948</b><span>서울 전월세(최근 2년)</span></div>
+          <div><b>7</b><span>공공 데이터 레이어</span></div>
         </div>
+        <p class="stats-note">2026-09 기준 · 개발 중 화면의 숫자</p>
+        <ul class="tech">
+          <li><span>인허가·실거래·전월세·상권·정비구역·도시계획·노후도 자료를 공식 경로로 모아 한 지도에서 겹쳐 봅니다.</span></li>
+          <li><span>정비구역마다 단계·고시 이력·조합 정보를 카드 한 장으로 정리합니다.</span></li>
+          <li><span>건축 법규를 바탕으로 빌라를 얼마나 지을 수 있는지 자동으로 검토하는 규모검토 엔진을 만들고 있습니다.</span></li>
+          <li><span>숫자와 규칙은 모델의 답을 그대로 믿지 않고 법령 원문과 공공 자료에 견주어 확인합니다.</span></li>
+          <li><span>개발자가 아닌 부동산 실무자가 Claude Code와 AI 에이전트 팀을 이끌며 직접 만듭니다.</span></li>
+        </ul>
         <div class="shots">
           <figure>
             <img src="shot-trades.webp" alt="국토탐사맵 화면 — 서울 전체 실거래·전월세 지도와 최근 거래 목록" width="1400" height="900" loading="lazy">
@@ -173,12 +171,24 @@
             <figcaption>정비구역 지도와 구역 카드(성수전략정비구역 제1구역)</figcaption>
           </figure>
         </div>
-        <p class="shots-note">개발 중 화면(2026-10) · 지도 © Kakao · 실거래 국토교통부 · 정비구역 서울시</p>
+        <p class="stats-note">개발 중 화면(2026-10) · 지도 © Kakao · 실거래 국토교통부 · 정비구역 서울시</p>
+        <p class="name">국토탐사맵<span>by wideplus</span></p>
+        <span class="pill">베타 준비 중</span>
+      </section>
+
+      <section>
+        <p class="label">What we do</p>
+        <h2>하는 일</h2>
+        <div class="cols">
+          <div><h3>부동산 개발 컨설팅</h3><p>이 땅에서 무엇을, 얼마나 지을 수 있는지 — 개발 사업의 첫 판단을 함께 검토합니다.</p></div>
+          <div><h3>빌라 신축·개발</h3><p>법규 검토와 규모 검토로 지을 수 있는 크기를 잡고, 수지분석으로 사업이 되는지 숫자로 답합니다.</p></div>
+          <div><h3>정비사업 분석</h3><p>재개발·재건축 구역의 진행 단계와 사업성을 자료로 살펴봅니다.</p></div>
+        </div>
       </section>
 
       <section class="en" lang="en">
         <p class="label">In English</p>
-        <p>Wideplus is a real-estate development consulting company in Korea, founded in 2022. We work on small residential (villa) development and redevelopment feasibility. We are building Gukto Tamsa Map (국토탐사맵), a map-based service that brings parcels, real-estate transactions, building permits and redevelopment zones onto one map and answers practical questions such as whether a small residential project is feasible. We build it with Claude Code. Currently preparing for beta.</p>
+        <p>Wideplus, founded in 2022 in Korea, works under one idea: share creativity, grow together — people building freely together, sharing the results, so that more people benefit. We started in real estate but are not limited to it, and plan open, collaborative projects such as a DAO. Our first project, Gukto Tamsa Map (국토탐사맵), tackles the information gap in Korean real estate: it brings parcels, transactions, permits and redevelopment zones onto one map, answers practical questions such as whether a small residential (villa) project is feasible, and is meant as an open tool that brokers, developers and consultants can build better services on. It is built with Claude Code by a non-developer founder leading a team of AI agents. Currently preparing for beta.</p>
       </section>
 
       <section>
