@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>와이드플러스 주식회사</title>
+<meta name="description" content="와이드플러스 주식회사 — 부동산 개발 컨설팅, 빌라 신축·개발, 정비사업 분석, 그리고 국토탐사맵.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Jost:wght@300;400&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<style>
+  /* 레이아웃: 명함 앞면(파란 천 + 흰 자수 로고)을 첫 화면으로, 아래는 명함 뒷면 같은 종이 위에 회사 이야기 */
+  :root {
+    --cobalt: #1D4ED0;        /* 명함 파랑 */
+    --cobalt-deep: #173FA8;
+    --on-cobalt: #FFFFFF;
+    --paper: #F2F1EC;         /* 명함 뒷면 종이 */
+    --sheet: #FBFAF7;
+    --ink: #1C1B22;
+    --muted: #5F5E6B;
+    --rule: #DCDAD2;
+    --accent: #1D4ED0;
+    --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --f-wide: "Jost", "Futura", "Century Gothic", sans-serif;
+    --f-hand: "Nanum Pen Script", "IBM Plex Sans KR", cursive;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --cobalt: #1D4ED0; --cobalt-deep: #173FA8; --on-cobalt: #FFFFFF;
+      --paper: #15161C; --sheet: #1D1F27; --ink: #ECEBF2; --muted: #A4A3B2; --rule: #30323C; --accent: #8FAAF5;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --cobalt: #1D4ED0; --cobalt-deep: #173FA8; --on-cobalt: #FFFFFF;
+    --paper: #15161C; --sheet: #1D1F27; --ink: #ECEBF2; --muted: #A4A3B2; --rule: #30323C; --accent: #8FAAF5;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+  .gutter { padding-inline: max(16px, 4vw); }
+  .wrap { max-width: 920px; margin-inline: auto; }
+
+  /* 첫 화면 — 명함 앞면 */
+  .front {
+    position: relative;
+    background-color: var(--cobalt);
+    color: var(--on-cobalt);
+    padding-block: 56px 48px;
+    overflow: hidden;
+  }
+  .front::before {   /* 천 결 — 아주 옅게 */
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .front .wrap { position: relative; display: grid; justify-items: center; gap: 28px; text-align: center; }
+  .logo { width: min(340px, 72vw); height: auto; display: block; filter: drop-shadow(0 2px 0 rgba(0,0,0,0.18)); }
+  .slogan {
+    font-family: var(--f-wide); font-weight: 300;
+    font-size: clamp(14px, 2.4vw, 19px);
+    letter-spacing: 0.32em; line-height: 1.9;
+    margin: 0; padding-left: 0.32em;
+  }
+  .lede { margin: 0; font-size: 17px; opacity: 0.92; max-width: 36em; text-wrap: balance; }
+
+  /* 본문 — 명함 뒷면 */
+  main { padding-block: 24px 8px; }
+  section { padding-block: 44px; border-top: 1px solid var(--rule); display: grid; gap: 18px; }
+  section:first-child { border-top: 0; }
+  .label {
+    font-family: var(--f-wide); font-size: 13px; font-weight: 400;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin: 0;
+  }
+  h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.4; margin: 0; font-weight: 700; text-wrap: balance; }
+  p { margin: 0; max-width: 40em; }
+  .muted { color: var(--muted); }
+
+  .vision {
+    font-size: clamp(19px, 3vw, 24px); line-height: 1.6; font-weight: 500;
+    border-left: 3px solid var(--accent); padding-left: 18px; max-width: 34em;
+  }
+  .vision small { display: block; margin-top: 8px; font-size: 14px; font-weight: 400; color: var(--muted); }
+
+  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+  .work div { padding: 18px 18px 20px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+  .work h3 { font-size: 17px; margin: 0 0 6px; }
+  .work p { font-size: 15px; color: var(--muted); }
+
+  .product { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 24px; display: grid; gap: 10px; }
+  .product .name { font-size: 22px; font-weight: 700; margin: 0; }
+  .product .name span { font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--accent); margin-left: 6px; }
+  .pill { justify-self: start; font-size: 13px; padding: 2px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
+
+  .en p { font-size: 15px; color: var(--muted); }
+  .mail { font-size: clamp(20px, 3vw, 24px); font-weight: 700; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent); justify-self: start; user-select: all; }
+  .mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+  footer { border-top: 1px solid var(--rule); padding-block: 28px 44px; font-size: 13px; color: var(--muted); display: grid; gap: 4px; }
+  footer .co { color: var(--ink); font-weight: 500; }
+  footer .hand { font-family: var(--f-hand); font-size: 22px; color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .front { padding-block: 40px 36px; }
+    .lede { font-size: 15px; }
+    section { padding-block: 34px; }
+  }
+</style>
+</head>
+<body>
+  <header class="front gutter">
+    <div class="wrap">
+      <img class="logo" src="logo-white.png" alt="WIDEPLUS — 물결 눈썹과 십자 눈의 웃는 얼굴 로고" width="720" height="519">
+      <p class="slogan">SHARING CREATIVITY<br>GROWING TOGETHER</p>
+      <p class="lede">부동산 개발 실무와 데이터로, 땅 한 필지의 가능성을 함께 읽고 키우는 회사입니다.</p>
+    </div>
+  </header>
+
+  <main class="gutter">
+    <div class="wrap">
+      <section>
+        <p class="label">About</p>
+        <h2>와이드플러스 주식회사</h2>
+        <p>와이드플러스는 부동산 개발 컨설팅과 빌라 신축·개발, 정비사업 사업성 검토를 하는 회사입니다. 현장에서 쌓은 실무 경험에 공공 데이터를 더해, 땅 한 필지가 어떤 사업이 될 수 있는지 근거를 갖고 답합니다.</p>
+      </section>
+
+      <section>
+        <p class="label">Vision</p>
+        <p class="vision">부동산 데이터와 정보의 메카 — 가볍게 모으고, 누구나 가공해 쓰고, 우리는 창의적으로 활용합니다.<small>모은 자료는 컨설팅과 플랫폼 서비스로 이어지고, 함께 계속 키워 갑니다.</small></p>
+      </section>
+
+      <section>
+        <p class="label">What we do</p>
+        <h2>하는 일</h2>
+        <div class="work">
+          <div><h3>부동산 개발 컨설팅</h3><p>이 땅에서 무엇을, 얼마나 지을 수 있는지 — 개발 사업의 첫 판단을 함께 검토합니다.</p></div>
+          <div><h3>빌라 신축·개발</h3><p>법규 검토와 규모 검토로 지을 수 있는 크기를 잡고, 수지분석으로 사업이 되는지 숫자로 답합니다.</p></div>
+          <div><h3>정비사업 분석</h3><p>재개발·재건축 구역의 진행 단계와 사업성을 자료로 살펴봅니다.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <p class="label">Now building</p>
+        <div class="product">
+          <p class="name">국토탐사맵<span>by wideplus</span></p>
+          <p>필지·실거래·인허가·정비구역 자료를 한 지도에 모으고, 지번 하나를 넣으면 빌라 신축 사업성과 재개발 분석의 답을 주는 서비스입니다. AI(Claude)와 함께 만들고 있습니다.</p>
+          <span class="pill">베타 준비 중</span>
+        </div>
+      </section>
+
+      <section class="en" lang="en">
+        <p class="label">In English</p>
+        <p>Wideplus is a real-estate development consulting company in Korea, founded in 2022. We work on small residential (villa) development and redevelopment feasibility. We are building Gukto Tamsa Map (국토탐사맵), a map-based service that brings parcels, real-estate transactions, building permits and redevelopment zones onto one map and answers practical questions such as whether a small residential project is feasible. We build it with Claude Code. Currently preparing for beta.</p>
+      </section>
+
+      <section>
+        <p class="label">Contact</p>
+        <a class="mail" href="mailto:contact@wideplus.co.kr">contact@wideplus.co.kr</a>
+      </section>
+
+      <footer>
+        <span class="co">와이드플러스 주식회사 <span class="hand">since 2022</span></span>
+        <span>대표 김영권 · 사업자등록번호 473-88-02918</span>
+        <span>경기도 파주시 문산읍 통일로 1700, 203호</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
