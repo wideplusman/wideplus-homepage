@@ -134,9 +134,6 @@
   .band b { font-family: var(--f-mono); font-weight: 400; font-size: clamp(20px, 3vw, 28px); color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; line-height: 1.3; }
   .band span { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
 
-  .slot { aspect-ratio: 14 / 9; display: grid; place-items: center; text-align: center; padding: 14px; border: 1px dashed var(--accent); border-radius: 6px; color: var(--accent);
-    background: repeating-linear-gradient(135deg, transparent 0 11px, rgba(29,78,208,0.05) 11px 12px); font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; line-height: 1.8; }
-  .slot em { display: block; font-style: normal; color: var(--muted); letter-spacing: 0.02em; font-family: var(--f-body); font-size: 12px; }
 
   .build { display: grid; gap: 22px; margin-top: 4px; }
   .build h3 { margin: 0 0 4px; font-family: var(--f-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
@@ -147,6 +144,41 @@
   .callout { border-left: 2px solid var(--accent); padding: 2px 0 2px 16px; color: var(--muted); max-width: 40em; }
   p strong { color: var(--ink); font-weight: 500; }
   .callout b { color: var(--ink); font-weight: 500; }
+
+
+  /* 3판 1013: 화면 영상 4개 + 캡처 갤러리 + 크게 보기 */
+  section.wide { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  section.wide > .body { gap: 22px; }
+  .vids { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 20px; margin: 0; padding: 0; }
+  .vids figure { margin: 0; display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .vids video { width: 100%; height: auto; aspect-ratio: 1280 / 800; display: block; background: #0f1320; border: 1px solid var(--rule); border-radius: 6px; }
+  .vids figcaption b, .gal figcaption b { display: block; font-weight: 500; color: var(--ink); font-size: 14.5px; line-height: 1.6; }
+  .vids figcaption span { display: block; font-size: 13px; line-height: 1.7; color: var(--muted); }
+  .vids figcaption .vtag, .gal-head { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--accent); }
+  .gal-head { margin: 0; max-width: none; border-top: 1px solid var(--ink); padding-top: 14px; }
+  .gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 20px; margin: 0; padding: 0; list-style: none; }
+  .gal li { margin: 0; display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .gal a.zoom { display: block; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; line-height: 0; cursor: zoom-in; transition: transform .35s ease, box-shadow .35s ease; }
+  .gal a.zoom:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(20, 30, 80, 0.12); }
+  .gal a.zoom:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .gal img { width: 100%; height: auto; display: block; aspect-ratio: 1440 / 900; }
+  .gal figcaption span { display: block; font-size: 12.5px; line-height: 1.7; color: var(--muted); }
+  .gal-hint { font-size: 12px; color: var(--muted); }
+
+  .lb { position: fixed; inset: 0; z-index: 50; display: none; grid-template-rows: minmax(0, 1fr) auto; background: rgba(10, 13, 24, 0.92); padding: 14px; }
+  .lb.open { display: grid; }
+  .lb[hidden] { display: none; }
+  .lb-stage { min-height: 0; display: grid; place-items: center; }
+  .lb-stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 4px; background: #fff; }
+  .lb-cap { color: #fff; text-align: center; padding: 12px 56px 4px; font-size: 13.5px; line-height: 1.7; }
+  .lb-cap b { display: block; font-weight: 500; }
+  .lb-cap span { opacity: 0.8; }
+  .lb button { position: absolute; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; background: rgba(0,0,0,0.35); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+  .lb button:hover, .lb button:focus-visible { background: #fff; color: #10131f; outline: none; }
+  .lb .x { top: 12px; right: 12px; }
+  .lb .pv { left: 10px; top: 50%; transform: translateY(-50%); }
+  .lb .nx { right: 10px; top: 50%; transform: translateY(-50%); }
+  body.lb-on { overflow: hidden; }
 
   footer { border-top: 1px solid var(--rule); padding-block: 28px 48px; display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 11.5px; color: var(--muted); }
   footer .co { color: var(--ink); }
@@ -162,10 +194,16 @@
     .band { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 24px; }
     .build .list li { grid-template-columns: minmax(0, 1fr); }
     .shots { grid-template-columns: minmax(0, 1fr); }
+    .vids { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .gal { gap: 16px 10px; }
+    .gal figcaption b { font-size: 13px; }
+    .gal figcaption span { display: none; }
+    .lb .pv, .lb .nx { top: auto; bottom: 14px; transform: none; }
+    .lb-cap { padding: 10px 56px 4px; }
     .list li { grid-template-columns: minmax(0, 1fr); gap: 0; }
     .front { padding-block: 56px 48px; }
   }
-  @media (prefers-reduced-motion: reduce) { .shots img { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .shots img, .gal a.zoom { transition: none; } }
 </style>
 </head>
 <body>
@@ -178,6 +216,7 @@
       <a class="cta" href="mailto:contact@wideplus.co.kr?subject=%EB%B2%A0%ED%83%80%20%EB%AC%B8%EC%9D%98">베타 문의하기</a>
       <nav class="jump" aria-label="페이지 이동">
         <a href="#product">PRODUCT</a>
+        <a href="#screens">SCREENS</a>
         <a href="#how">HOW IT WORKS</a>
         <a href="#features">FEATURES</a>
         <a href="#next">NEXT</a>
@@ -217,6 +256,85 @@
             <div><span class="tag">OPEN</span><h3>업계가 함께 쓰는 도구</h3><p>중개·개발·컨설팅이 이 위에서 더 나은 서비스를 만듭니다.</p></div>
           </div>
           <p class="status">BETA · 준비 중 — 지금은 내부 베타이며, 공개 서비스는 준비 중입니다</p>
+        </div>
+      </section>
+
+      <section class="wide" id="screens">
+        <p class="label">Screens</p>
+        <div class="body">
+          <h2>실제 화면으로 보는 국토탐사맵</h2>
+          <p>아래는 내부 베타의 실제 구동 화면입니다. 서울의 공공 자료를 지도 위에 겹치고, 필지와 구역을 눌러 카드로 확인하는 흐름입니다.</p>
+          <div class="vids" aria-label="구동 영상">
+            <figure>
+              <video muted autoplay loop playsinline preload="metadata" poster="media/02-overlay.webp" aria-label="공공 자료를 한 지도에 겹쳐 보기">
+                <source src="media/v1-layers.mp4" type="video/mp4">
+              </video>
+              <figcaption><span class="vtag">영상 1</span><b>공공 자료를 한 지도에 겹쳐 보기</b><span>건물 노후도, 정비구역, 실거래, 건축 인허가를 차례로 켜고 확대해 봅니다. 동대문구·중랑구 이문·휘경·면목 일대.</span></figcaption>
+            </figure>
+            <figure>
+              <video muted autoplay loop playsinline preload="metadata" poster="media/05-parcel-card.webp" aria-label="필지를 눌러 카드로 확인">
+                <source src="media/v2-parcel-card.mp4" type="video/mp4">
+              </video>
+              <figcaption><span class="vtag">영상 2</span><b>필지를 눌러 카드로 확인</b><span>지도에서 필지를 누르거나 주소를 검색하면, 면적·용도지역·건물·인허가 이력이 한 장의 카드로 뜹니다. 동대문구 이문동 일대와 서울 시청 일대.</span></figcaption>
+            </figure>
+            <figure>
+              <video muted autoplay loop playsinline preload="metadata" poster="media/03-aging.webp" aria-label="노후도 위에 정비구역 얹기">
+                <source src="media/v3-aging-zones.mp4" type="video/mp4">
+              </video>
+              <figcaption><span class="vtag">영상 3</span><b>노후도 위에 정비구역 얹기</b><span>건물 노후도 지도에 정비구역을 겹치고, 구역을 눌러 사업 단계와 구역 안 자료를 확인합니다. 동대문구 이문동·휘경동 일대.</span></figcaption>
+            </figure>
+            <figure>
+              <video muted autoplay loop playsinline preload="metadata" poster="media/07-trades.webp" aria-label="실거래 점과 거래 카드">
+                <source src="media/v4-trades.mp4" type="video/mp4">
+              </video>
+              <figcaption><span class="vtag">영상 4</span><b>실거래 점과 거래 카드</b><span>연립·다세대 실거래를 점으로 보고, 점을 누르면 거래가·면적·층·㎡당 가격이 카드로 뜹니다. 마포구 망원동 일대.</span></figcaption>
+            </figure>
+          </div>
+          <p class="gal-head">SCREENSHOTS · 10</p>
+          <ul class="gal" id="gallery" aria-label="캡처 화면">
+            <li>
+              <a class="zoom" href="media/01-permits.webp" data-title="서울 전역 신축 인허가" data-desc="신축 공동주택 인허가를 점으로 표시하고, 원의 크기는 세대수입니다. 오른쪽 목록과 함께 봅니다. 서울 전역."><img src="media/01-permits.webp" alt="국토탐사맵 화면: 서울 전역 신축 인허가" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>서울 전역 신축 인허가</b><span>신축 공동주택 인허가를 점으로 표시하고, 원의 크기는 세대수입니다. 오른쪽 목록과 함께 봅니다. 서울 전역.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/02-overlay.webp" data-title="네 가지 자료를 한 지도에" data-desc="노후도·정비구역·실거래·인허가를 한 화면에 겹칩니다. 동대문구·중랑구 이문·휘경·면목 일대."><img src="media/02-overlay.webp" alt="국토탐사맵 화면: 네 가지 자료를 한 지도에" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>네 가지 자료를 한 지도에</b><span>노후도·정비구역·실거래·인허가를 한 화면에 겹칩니다. 동대문구·중랑구 이문·휘경·면목 일대.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/03-aging.webp" data-title="건물 노후도 지도" data-desc="건물별 노후 정도를 색으로 칠하고, 노후 건물 목록을 함께 보여 줍니다. 동대문구 이문동 일대."><img src="media/03-aging.webp" alt="국토탐사맵 화면: 건물 노후도 지도" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>건물 노후도 지도</b><span>건물별 노후 정도를 색으로 칠하고, 노후 건물 목록을 함께 보여 줍니다. 동대문구 이문동 일대.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/04-zone-card.webp" data-title="정비구역 카드" data-desc="구역 면은 진행 단계별 색으로 보이고, 눌러서 단계·면적·고시일·구역 안 자료를 확인합니다. 동대문구 이문동."><img src="media/04-zone-card.webp" alt="국토탐사맵 화면: 정비구역 카드" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>정비구역 카드</b><span>구역 면은 진행 단계별 색으로 보이고, 눌러서 단계·면적·고시일·구역 안 자료를 확인합니다. 동대문구 이문동.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/05-parcel-card.webp" data-title="필지 카드: 건물과 주변 실거래" data-desc="필지를 고르면 건물 노후도와 반경 안 실거래 통계가 카드에 나옵니다. 동대문구 이문동 일대."><img src="media/05-parcel-card.webp" alt="국토탐사맵 화면: 필지 카드: 건물과 주변 실거래" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>필지 카드: 건물과 주변 실거래</b><span>필지를 고르면 건물 노후도와 반경 안 실거래 통계가 카드에 나옵니다. 동대문구 이문동 일대.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/06-parcel-search.webp" data-title="주소 검색으로 필지 카드" data-desc="주소를 검색하면 면적·용도지역·건물·인허가 이력이 한 장에 모입니다. 서울 시청 일대."><img src="media/06-parcel-search.webp" alt="국토탐사맵 화면: 주소 검색으로 필지 카드" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>주소 검색으로 필지 카드</b><span>주소를 검색하면 면적·용도지역·건물·인허가 이력이 한 장에 모입니다. 서울 시청 일대.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/07-trades.webp" data-title="실거래 지도" data-desc="연립·다세대 실거래를 점으로 보고, 색은 ㎡당 가격입니다. 거래 목록과 함께 봅니다. 마포구 망원동 일대."><img src="media/07-trades.webp" alt="국토탐사맵 화면: 실거래 지도" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>실거래 지도</b><span>연립·다세대 실거래를 점으로 보고, 색은 ㎡당 가격입니다. 거래 목록과 함께 봅니다. 마포구 망원동 일대.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/08-trade-card.webp" data-title="실거래 카드" data-desc="점을 누르면 거래가·면적·층·㎡당 가격이 카드로 뜹니다. 마포구 망원동."><img src="media/08-trade-card.webp" alt="국토탐사맵 화면: 실거래 카드" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>실거래 카드</b><span>점을 누르면 거래가·면적·층·㎡당 가격이 카드로 뜹니다. 마포구 망원동.</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/09-zoning.webp" data-title="용도지역·지구단위계획" data-desc="도시계획 구역을 겹쳐 보고 목록으로 확인합니다. 서울 도심(종로구·중구)."><img src="media/09-zoning.webp" alt="국토탐사맵 화면: 용도지역·지구단위계획" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>용도지역·지구단위계획</b><span>도시계획 구역을 겹쳐 보고 목록으로 확인합니다. 서울 도심(종로구·중구).</span></figcaption>
+            </li>
+            <li>
+              <a class="zoom" href="media/10-skyview.webp" data-title="항공사진 위에 정비구역" data-desc="스카이뷰(항공사진) 위에 정비구역을 겹쳐, 실제 동네 모습과 함께 봅니다. 동대문구 이문동·휘경동 일대."><img src="media/10-skyview.webp" alt="국토탐사맵 화면: 항공사진 위에 정비구역" width="1440" height="900" loading="lazy"></a>
+              <figcaption><b>항공사진 위에 정비구역</b><span>스카이뷰(항공사진) 위에 정비구역을 겹쳐, 실제 동네 모습과 함께 봅니다. 동대문구 이문동·휘경동 일대.</span></figcaption>
+            </li>
+          </ul>
+          <p class="gal-hint">화면을 누르면 크게 볼 수 있습니다.</p>
+          <p class="note">개발 중 화면 · 지도 © Kakao · 실거래 국토교통부 · 정비구역·인허가·도시계획 서울시 · 영상 속 마우스 표시는 설명을 위해 얹은 것입니다</p>
         </div>
       </section>
 
@@ -287,26 +405,6 @@
         <div class="body">
           <h2>안은 촘촘하게, 겉은 간결하게</h2>
           <p>공식 경로로 모은 공공 데이터, 건축 법규를 담은 규모검토 엔진, 원문 대조로 지키는 정확도.</p>
-          <div class="shots">
-            <figure>
-              <img src="shot-trades.webp" alt="국토탐사맵 화면 — 서울 실거래·전월세 지도와 최근 거래 목록" width="1400" height="900" loading="lazy">
-              <figcaption>서울 실거래·전월세 지도</figcaption>
-            </figure>
-            <figure>
-              <img src="shot-redevelop.webp" alt="국토탐사맵 화면 — 성동구 정비구역 지도와 성수전략정비구역 제1구역 카드" width="1400" height="900" loading="lazy">
-              <figcaption>정비구역 지도와 구역 카드</figcaption>
-            </figure>
-            <!-- 결과물 그림 자리(숨김): 캡처는 허락을 받은 뒤에 채운다. 받으면 아래 두 figure 를 <figure><img src="shot-….webp" alt="…" width="1400" height="900" loading="lazy"><figcaption>…</figcaption></figure> 로 바꾸고 hidden 을 지운다. 캡처가 없으면 hidden 인 채로 게시한다(화면에 나오지 않음). -->
-            <figure hidden>
-              <div class="slot" role="img" aria-label="캡처 예정 — 지번 하나로 보는 필지 카드"><span>캡처 예정<em>필지 카드 — 인허가·반경 실거래·용도지역·노후도</em></span></div>
-              <figcaption>필지 카드</figcaption>
-            </figure>
-            <figure hidden>
-              <div class="slot" role="img" aria-label="캡처 예정 — 노후도 지도"><span>캡처 예정<em>노후도 지도 — 필지 색칠</em></span></div>
-              <figcaption>노후도 지도</figcaption>
-            </figure>
-          </div>
-          <p class="note">개발 중 화면 · 지도 © Kakao · 실거래 국토교통부 · 정비구역 서울시</p>
         </div>
       </section>
 
@@ -410,5 +508,62 @@
       <span>© 2022–2026 Wideplus Co., Ltd.</span>
     </div>
   </footer>
+
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="화면 크게 보기" hidden>
+    <div class="lb-stage"><img id="lb-img" alt=""></div>
+    <div class="lb-cap" id="lb-cap"></div>
+    <button type="button" class="x" id="lb-x" aria-label="닫기">&#10005;</button>
+    <button type="button" class="pv" id="lb-pv" aria-label="이전 화면">&#8249;</button>
+    <button type="button" class="nx" id="lb-nx" aria-label="다음 화면">&#8250;</button>
+  </div>
+  <script>
+  (function () {
+    // 영상: 화면에 보일 때만 재생(데이터·배터리 절약), 자동재생이 막히면 재생 단추를 보인다
+    var vids = [].slice.call(document.querySelectorAll('.vids video'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    vids.forEach(function (v) {
+      v.muted = true;
+      if (reduce) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
+    });
+    if (!reduce && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); }
+          else v.pause();
+        });
+      }, { threshold: 0.25 });
+      vids.forEach(function (v) { io.observe(v); });
+    }
+
+    // 캡처: 눌러서 크게 보기(좌우 화살표 이동, Esc 닫기)
+    var links = [].slice.call(document.querySelectorAll('#gallery a.zoom'));
+    var lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap');
+    var cur = 0, last = null;
+    function show(i) {
+      cur = (i + links.length) % links.length;
+      var a = links[cur];
+      img.src = a.getAttribute('href');
+      img.alt = a.getAttribute('data-title') || '';
+      cap.innerHTML = '';
+      var b = document.createElement('b'); b.textContent = (cur + 1) + ' / ' + links.length + ' · ' + (a.getAttribute('data-title') || '');
+      var s = document.createElement('span'); s.textContent = a.getAttribute('data-desc') || '';
+      cap.appendChild(b); cap.appendChild(s);
+    }
+    function open(i) { last = document.activeElement; lb.hidden = false; lb.classList.add('open'); document.body.classList.add('lb-on'); show(i); document.getElementById('lb-x').focus(); }
+    function close() { lb.classList.remove('open'); lb.hidden = true; document.body.classList.remove('lb-on'); img.removeAttribute('src'); if (last && last.focus) last.focus(); }
+    links.forEach(function (a, i) { a.addEventListener('click', function (e) { e.preventDefault(); open(i); }); });
+    document.getElementById('lb-x').addEventListener('click', close);
+    document.getElementById('lb-pv').addEventListener('click', function () { show(cur - 1); });
+    document.getElementById('lb-nx').addEventListener('click', function () { show(cur + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lb-stage')) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(cur - 1);
+      else if (e.key === 'ArrowRight') show(cur + 1);
+    });
+  })();
+  </script>
 </body>
 </html>
